@@ -1,29 +1,28 @@
+-- ######################################### --
+-- ## (server)^2 Modification Core Plugin ## --
+-- ##  Not intended to be run standalone. ## --
+-- ##         Depends on the Core.        ## --
+-- ######################################### --
+
 local SSCI = {}				-- Main table.
 SSCI.terminal = {}
 SSCI.draw = {}
 
-SSCI.title = "(server)^2 Modification Interface"		-- Title of this modification.
-SSCI.version = "1.0.0"									-- Version number of this modification.
-SSCI.beta = false										-- If this build is a beta build.
-SSCI.alpha = true										-- If this build is an alpha build.
+SSCI.title = "(server)^2 Modification Core"
 
-local blank = ""
-local space = " "
-
-if not package.config:sub(1,1) == "/" then
+if not unix then
 	print("FATAL: Windows NT detected, exiting.")
 	os.exit()
 end
 
--- Load ansicolors
-function reqansicolors()
-	colors = require("ansicolors")
+if not SSCore then
+	print("FATAL: Dependency not found: serversquaredmodificationcore")
 end
-if not pcall(reqansicolors) then
+
+if not colors then
 	print("FATAL: Dependency not found: ansicolors")
 	os.exit()
 end
-reqansicolors = nil
 
 function SSCI.terminal.getWidth()
 	local handle = io.popen("tput cols")
@@ -48,9 +47,9 @@ function SSCI.draw.bar()
 	io.output(io.stdout)
 	io.write(colors("%{reset reverse} " .. SSCI.title))
 
-	for i = 1, math.floor(SSCI.terminal.width - (#SSCI.title + #SSCI.version + 4 + (SSCI.alpha and 6 or 0) + (SSCI.beta and 5 or 0))), 1 do
+	for i = 1, math.floor(SSCI.terminal.width - (#SSCI.title + #SSCore.version.core + 4 + (SSCore.alpha and 6 or 0) + (SSCore.beta and 5 or 0))), 1 do
 		io.write(colors("%{reset reverse} "))
 	end
 
-	io.write(colors("%{reset reverse} v" .. SSCI.version .. (SSCI.alpha and " Alpha" or blank) .. (SSCI.beta and " Beta" or blank) .. " %{reset}"))
+	io.write(colors("%{reset reverse} v" .. SSCore.version.core .. (SSCore.alpha and " Alpha" or blank) .. (SSCore.beta and " Beta" or blank) .. " %{reset}"))
 end
