@@ -78,9 +78,9 @@ end
 function SSCI.draw.borders()
 	io.output(io.stdout)
 
-	io.write(colors("%{reset bright yellow reverse}CHAT"))
+	io.write(colors("%{reset bright yellow reverse}   CHAT"))
 
-	for i = 1, math.ceil((SSCI.terminal.width / 2) - 5), 1 do
+	for i = 1, math.ceil((SSCI.terminal.width / 2) - 8), 1 do
 		io.write(colors("%{reset bright yellow reverse} "))
 	end
 
@@ -88,9 +88,9 @@ function SSCI.draw.borders()
 
 	SSCI.terminal.savePos()
 
-	io.write(colors("%{reset bright magenta reverse}PLAYERS"))
+	io.write(colors("%{reset bright magenta reverse}   PLAYERS"))
 
-	for i = 1, math.ceil((SSCI.terminal.width / 2) - 8), 1 do
+	for i = 1, math.ceil((SSCI.terminal.width / 2) - 11), 1 do
 		io.write(colors("%{reset bright magenta reverse} "))
 	end
 
@@ -112,9 +112,9 @@ function SSCI.draw.borders()
 
 			SSCI.terminal.savePos()
 
-			io.write(colors("%{reset bright green reverse}SERVER"))
+			io.write(colors("%{reset bright green reverse}   SERVER"))
 
-			for i = 1, math.ceil((SSCI.terminal.width / 2) - 7), 1 do
+			for i = 1, math.ceil((SSCI.terminal.width / 2) - 10), 1 do
 				io.write(colors("%{reset bright green reverse} "))
 			end
 
