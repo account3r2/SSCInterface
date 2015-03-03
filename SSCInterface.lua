@@ -10,12 +10,17 @@ SSCI.alpha = true										-- If this build is an alpha build.
 local blank = ""
 local space = " "
 
+if not package.config:sub(1,1) == "/" then
+	print("FATAL: Windows NT detected, exiting.")
+	os.exit()
+end
+
 -- Load ansicolors
 function reqansicolors()
 	colors = require("ansicolors")
 end
 if not pcall(reqansicolors) then
-	print("Dependency not found: ansicolors")
+	print("FATAL: Dependency not found: ansicolors")
 	os.exit()
 end
 reqansicolors = nil
