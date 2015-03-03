@@ -74,3 +74,51 @@ function SSCI.draw.bar()
 
 	io.write(colors("%{reset reverse} v" .. SSCore.version.core .. (SSCore.alpha and " Alpha" or blank) .. (SSCore.beta and " Beta" or blank) .. " %{reset}"))
 end
+
+function SSCI.draw.borders()
+	io.output(io.stdout)
+
+	io.write(colors("%{reset bright yellow reverse}CHAT"))
+
+	for i = 1, math.ceil((SSCI.terminal.width / 2) - 5), 1 do
+		io.write(colors("%{reset bright yellow reverse} "))
+	end
+
+	io.write(colors("%{reset bright}|"))
+
+	SSCI.terminal.savePos()
+
+	io.write(colors("%{reset bright magenta reverse}PLAYERS"))
+
+	for i = 1, math.ceil((SSCI.terminal.width / 2) - 8), 1 do
+		io.write(colors("%{reset bright magenta reverse} "))
+	end
+
+	SSCI.terminal.restorePos()
+
+	for i = 1, math.floor(SSCI.terminal.height - 3), 1 do
+		io.write(colors("\027[B\027[D%{reset bright}|"))
+
+		if i == math.floor(SSCI.terminal.height / 2) then
+			SSCI.terminal.savePos()
+
+			for i = 1, math.ceil((SSCI.terminal.width / 2) - 1), 1 do
+				io.write(colors("%{reset bright}-"))
+			end
+
+			SSCI.terminal.restorePos()
+
+			io.write(colors("\027[B\027[D%{reset bright}|"))
+
+			SSCI.terminal.savePos()
+
+			io.write(colors("%{reset bright green reverse}SERVER"))
+
+			for i = 1, math.ceil((SSCI.terminal.width / 2) - 7), 1 do
+				io.write(colors("%{reset bright green reverse} "))
+			end
+
+			SSCI.terminal.restorePos()
+		end
+	end
+end
