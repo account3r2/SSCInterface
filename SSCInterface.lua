@@ -17,6 +17,7 @@ end
 
 if not SSCore then
 	print("FATAL: Dependency not found: serversquaredmodificationcore")
+	os.exit()
 end
 
 if not colors then
