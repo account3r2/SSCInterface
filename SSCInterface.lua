@@ -44,6 +44,26 @@ function SSCI.terminal.getSize()
 	SSCI.terminal.getHeight()
 end
 
+function SSCI.terminal.clear()
+	io.write("\027[2J")
+end
+
+function SSCI.terminal.setPos(line, col)
+	if type(line) ~= "number" or type(col) ~= "number" then
+		return
+	end
+
+	io.write("\027[" .. line .. ";" .. col .. "H")
+end
+
+function SSCI.terminal.savePos()
+	io.write("\027[s")
+end
+
+function SSCI.terminal.restorePos()
+	io.write("\027[u")
+end
+
 function SSCI.draw.bar()
 	io.output(io.stdout)
 	io.write(colors("%{reset reverse} " .. SSCI.title))
