@@ -29,14 +29,14 @@ function SSCI.terminal.getWidth()
 	local handle = io.popen("tput cols")
 	SSCI.terminal.width = handle:read("*a")
 	handle:close()
-	SSCI.terminal.width = string.gsub(SSCI.terminal.width, "\n", "")
+	SSCI.terminal.width = string.gsub(SSCI.terminal.width, "\n", blank)
 end
 
 function SSCI.terminal.getHeight()
 	local handle = io.popen("tput lines")
 	SSCI.terminal.height = handle:read("*a")
 	handle:close()
-	SSCI.terminal.height = string.gsub(SSCI.terminal.height, "\n", "")
+	SSCI.terminal.height = string.gsub(SSCI.terminal.height, "\n", blank)
 end
 
 function SSCI.terminal.getSize()
