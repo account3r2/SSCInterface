@@ -1,4 +1,5 @@
-local terminal = {}
+local SSCI = {}				-- Main table.
+SSCI.terminal = {}
 
 -- Load ansicolors
 function reqansicolors()
@@ -10,21 +11,21 @@ if not pcall(reqansicolors) then
 end
 reqansicolors = nil
 
-function terminal.getWidth()
+function SSCI.terminal.getWidth()
 	local handle = io.popen("tput cols")
-	terminal.width = handle:read("*a")
+	SSCI.terminal.width = handle:read("*a")
 	handle:close()
-	terminal.width = string.gsub(terminal.width, "\n", "")
+	SSCI.terminal.width = string.gsub(SSCI.terminal.width, "\n", "")
 end
 
-function terminal.getHeight()
+function SSCI.terminal.getHeight()
 	local handle = io.popen("tput lines")
-	terminal.height = handle:read("*a")
+	SSCI.terminal.height = handle:read("*a")
 	handle:close()
-	terminal.height = string.gsub(terminal.height, "\n", "")
+	SSCI.terminal.height = string.gsub(SSCI.terminal.height, "\n", "")
 end
 
-function terminal.getSize()
-	terminal.getWidth()
-	terminal.getHeight()
+function SSCI.terminal.getSize()
+	SSCI.terminal.getWidth()
+	SSCI.terminal.getHeight()
 end
