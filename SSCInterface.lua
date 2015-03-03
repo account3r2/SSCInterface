@@ -1,5 +1,15 @@
 local terminal = {}
 
+-- Load ansicolors
+function reqansicolors()
+	colors = require("ansicolors")
+end
+if not pcall(reqansicolors) then
+	print("Dependency not found: ansicolors")
+	os.exit()
+end
+reqansicolors = nil
+
 function terminal.getWidth()
 	local handle = io.popen("tput cols")
 	terminal.width = handle:read("*a")
